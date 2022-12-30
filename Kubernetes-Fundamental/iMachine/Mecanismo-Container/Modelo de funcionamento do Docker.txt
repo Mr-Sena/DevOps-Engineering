@@ -1,0 +1,7 @@
+Podemos ver que o engine (dockerd) principal do Docker foi separado do runtime, e agora ele se concentrava somente em receber os inputs do usuário e comunicar os mesmos ao containerd, que por sua vez iria iniciar os runtimes do runC ou qualquer outro runtime que fosse compatível com o OCI.
+
+Em suma, dando nome a todas as partes:
+
+Docker Engine (ou Docker Daemon, dockerd): É o responsável por receber os comandos do usuário pelo CLI e passar essas requisições para o containerd.
+containerd: Interface compatível com o OCI capaz de executar, baixar e extrair qualquer imagem que seja também compatível com a OCI e executar processos do runC.
+runC: Lida com todo o gerenciamento e criação dos containers de acordo com a especificação do OCI.
