@@ -10,7 +10,7 @@ Control Plane:
 		* OBS: Também é possível interagir através dos endpoints da API.
 	+ ETCD -> Banco de chave-valor. Armazenamento de todos os dados do Kubernetes.
 		*OBS: Interação com o ETCD é realizado através do Api-Server.
-	+ Scheduler -> Receber as especificações do pods com a relação de containers para subir e verifica qual Worker Node é adequado para executar o trabalho. 
+	+ Scheduler -> Receber as especificações de pods com a relação de containers para subir e verifica qual Worker Node é adequado para executar o trabalho. 
 	+ Controller Manager -> Análise dos parâmetro do Kubernetes; garantir o funcionamento da especificação da execução.
 		* Tipos de Controller: Replicaset, NodeController, AutenticationController, etc...
 	
