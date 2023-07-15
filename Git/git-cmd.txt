@@ -1,0 +1,73 @@
+
+
+Tips: 
+
+ - O comando git rebase, é similar ao git merge, porém, ele não é recomendado para enviar as alterações diretamente para a branch principal do projeto; pois, ele não possui uma linha do tempo totalmente fiel para manter a ordem do histórico de log.
+ 
+ $ git rebase <branch-name>
+ 
+ 
+Recomendação: utilizar esse comando para trabalhar em uma nova versão de feature isolada.
+
+
+
+
+
+ - Coletar um log diretamente para uma branch diferente. O cherry-pick permiste fazer a transferência somente com o hash do commit diretamente através do comando. OBS: O histórico de alteração do log também não atende à linha do tempo de modificação, a sua sequência segue a ordem do último log efetivamente incluído para a branch.
+
+ $ git cherry-pick <hash-commit>
+ 
+ 
+ 
+ 
+
+Git tag - Marco histórico da nova versão.
+
+Adicionar uma nova tag com a última versão do commit
+ $ git tag -a v2.0 -m "Versão 1.0"
+ 
+Adicionar uma nova tag com um commit anterior
+ $ git tag -a v1.0 -m "Versão 2.0" <hash-commit>
+Exemplo: 
+ $ git tag -a v1.0 -m "Versão 2.0" 5b4d7d3a70183844c8279fa8b6946d6ce8adcea7
+ 
+Detalhes sobre a tag:
+ $ git show v1.0
+
+Remover uma tag: 
+ $ git tag -d v2.0
+ 
+ 
+ 
+ 
+ 
+Git fetch - Pesquisa o conteúdo da brach remoto sem fazer o merge com a base local.
+
+
+
+
+
+
+ - Rastreabilidade de código
+ 
+ Commits efetuados: 
+ $ git log
+ 
+ Descrição sobre alteração: 
+ $ git log --stat
+ 
+ Mais detalhes sobre a alteração
+ $ git log -p
+ 
+ Definir quantidade de logs da consulta (2 últimos logs, por exemplo): 
+ $ git log -n 2
+ 
+ Visual gŕafico do workflow: 
+ $ git log --graph
+ $ git log --graph --oneline
+ 
+ Filtro de log
+ $ git log --author="Mr-Sena" 
+ 
+ Linha do tempo
+ $ git log --after="1 week ago"
