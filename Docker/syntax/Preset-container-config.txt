@@ -1,0 +1,12 @@
+
+docker container run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME="mongouser" -e MONGO_INITDB_ROOT_PASSWORD="mongopwd"  -v mongo_database:/data/db --name mongodb --network produto_network mongo:4.4.3
+
+IMPORTANTE: Aparentemente o volume guarda as credenciais de login. Portanto, não é possível acessar uma nova base no mesmo volume com o login diferente.
+
+
+Container utilizado em conjunto para subir o back-end de uma aplicação: 
+
+ $ docker container run -d -p 8080:8080 -e MONGODB_URI=mongodb://mongouser:mongopwd@mongodb:27017/admin --network produto_network api-produto-kubdev:v1
+
+
+@mongodb é o nome do container que executa o mongodb. Nesse caso o banco de dados deve ser criado primeiro.

@@ -1,0 +1,295 @@
+Exibir Containers em execução [duas opções]: 
+ > docker ps
+ > docker container ls
+
+Exibir todos os container -> Add a flag -a
+Exemplo:
+$ docker ps -a
+$ docker container ls -a
+ 
+Exibir somente os id's dos containers -> add a flag -q
+
+Exemplo: 
+$ docker ps -a -q
+
+
+
+Executar e permanecer com o container em execução por determinado tempo: 
+ > docker run ubuntu sleep <estimated_time>
+        ubuntu permanece em exeucuçao durante o tempo detemrinado (elapsed time)
+
+Exemplo: 
+$ docker run ubuntu sleep 10s
+
+
+Parar a execução de um container:
+ > docker stop <container_id>
+
+Exemplo:
+$ docker stop b080968d77ff
+
+
+Reiniciar a execução desse container: 
+ > docker start <container id>
+
+Exemplo: 
+$ docker start b080968d77ff
+
+
+Pausar Container Docker: 
+ > docker pause <container-id>
+
+...Despausar: 
+ > docker unpause <container-id>
+
+
+Remover um container: 
+ > docker rm <container-id>
+
+
+Executar o container com interação ao terminal
+ > docker exect -it <container-id> <comando-para-exeutar-no-container>
+
+exemplo: 
+$ docker exec -it 37ff3c033e8b bash
+
+ * In case of your input device it ns not a TTY: 
+$ winpty docker exec -it 37ff3c033e8b bash
+
+
+
+
+
+## Flags & Mapping ports
+
+Executar um container sem travar o terminal: 
+ > docker run -d <container-image>
+ [ MODO DAEMON - Segundo Plano]
+
+Exemplo: 
+$ docker run -d dockersamples/static-site
+
+
+Executar um container com as portas mapeadas no host:
+ > docker run -d -P <container-image>
+
+
+Executar um container e mapear as respectivas portas manualmente
+ > docker run -d -p <porta-para-acessar-no-host>:<container-port> <container-image>
+
+Exemplo: docker run -d -p 8080:80 dockersamples/static-site
+
+
+Exibir o mapeamento das portas:
+ > docker port <container-id>
+
+
+
+
+
+Exibição das informações de imagens que forma executadas:
+ > docker images
+
+
+Apresentação de informações mais detalhadas sobre determinada image: 
+ > docker inspect <image-id>
+
+Exemplo: 
+$ docker inspect f589ccde7957
+
+
+Exibir camadas para construção final da image: 
+ > docker history <image-id>
+
+
+
+
+Compilar uma imagem para o Docker:
+ > docker build -t <tag> <contexto-execução>
+
+Exemplo: 
+$ docker build -t test/app-node:1.0 .
+OBS: o contexto de execução, nesse caso, foi o diretório atual, por isso o pontal no final do comando.
+
+-t -> para taguear a image 
+
+
+
+
+
+
+
+
+Subir uma imagem para o repositório Docker:
+
+ > Faça o login:
+ $ docker login -u <nome_usuario>
+Em seguida será solicitado o preenchimento da senha.
+
+docker push <tag_imagem>
+
+ * Só é permitido subir imagens que a tag é marcado com seu próprio nome de usuário.
+Caso contrário a requisição de acesso é negado.
+
+exemplo:
+docker push joao/imagem-de-aplicacao
+
+caso a imagem não esteja em conformidade com seu nome de usuário a requisição de acesso é negado.
+
+Para criar uma nova imagem com sua própria tag, faça uma cópia: 
+ > docker tag <oldName/image> <newName/image>
+Exemplo:
+ $ docker tag otherUser/AppImg:1.0 joao/AppImg:1.0
+
+
+
+
+
+
+
+Remover todos os containers de uma vez: 
+ > docker container rm $(docker container ls -aq)
+
+Descrição do comando:
+
+$(docker container ls -aq) -> Retorna todos os container, onde as flag
+        a -> Buscar por todos containers, incluindo os que estão parado.
+        q -> Resume a busca para retorno somente o id's desses containers
+
+docker container rm -> Remove os containers com todo os id's informado, resultado do comando acima.
+
+
+
+
+IMPORTANTE: 
+Caso o terminal, do Git Bash, retornar a seguinte msg: stdout is not a tty
+
+substitua docker por docker.exe, no comando dentro da expressão dos parênteses. Exemplo: 
+$ docker container rm $(docker.exe container ls -aq)
+
+
+
+Apagar todas a imagens: 
+$ docker rmi $(docker.exe image ls -aq)
+
+Caso houver uma image que referencia a multiplos repositórios, 
+deve ser executado o comando de remoção forçado: 
+> docker rmi $(docker.exe image ls -aq) --force
+
+
+
+
+
+
+
+Como criar um container com variáveis de ambiente: 
+
+Utilizar a flag -e para o parâmetro, Exemplo MongDB (Página da imagem: https://hub.docker.com/_/mongo): 
+
+ docker container run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME="username" -e MONGO_INITDB_ROOT_PASSWORD="secret" mongo
+
+Executar o container conectar a base com um gerenciador de Banco de Dados
+
+
+
+Container com volume para fazer a persistência de dados: 
+
+docker container run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME="userroot" -e MONGO_INITDB_ROOT_PASSWORD="secret_mongopwd"  -v mongo_datasource:/data/db mongo:4.4.3
+
+
+
+
+
+
+
+
+Para compartilhar e armazenar dados de docker containers, é necessário fazer uma persistência em um volume
+
+Commands for volume: 
+ > docker volume <command>
+ 
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove all unused local volumes
+  rm          Remove one or more volumes
+
+
+
+
+
+Apply - List the volumes: 
+ $ docker volume ls
+ 
+ 
+
+Utilizar um volume com bind mount: 
+ > docker run -it --mount type=bind,source=<diretorio-armazenamento-no-host>,target=<destino-no-container> ubuntu bash
+
+
+Exemplo: 
+$ docker run -it --mount type=bind,source=c:/users/joao_/docker-volumes,target=/app ubuntu bash
+
+
+
+
+logs do container: 
+ $ docker container logs <container-id>
+
+número específico de linhas: 
+ $ docker container logs -n 5 <container-id>
+
+Verificação contínua de logs: 
+ $ docker container logs -f <container-id>
+
+
+
+Criar uma imagem a partir de um container: 
+ $ docker commit <hash-do-container> <nome-da-nova-imagem>
+ 
+Exemplo: 
+ $ docker commit a35df65cb3b0 ubuntu-curl-commit
+
+
+
+
+
+Operação do docker-compose: 
+
+execução dos containers: 
+ > docker-compose up
+
+execução no modo detached: 
+ > docker-compose up -d
+ 
+remoção dos container: 
+ > docker-compose down
+ 
+detalahmento dos serviços:   
+ > docker-compose ps
+
+
+
+ATENÇÃO: Dockerfile é um recurso para definir uma imagem docker. 
+O arquivo docker-compose.yaml, porém, possuí a responsabilidade para criar o container.
+Contudo, é possível configurar o ambiente para executar esse modelo Build e Run em conjunto.
+
+ - O Service da aplicação do Docker-compose, deve possuir a dicriminação do Dockerfile da imagem.
+
+Quando uma nova versão do projeto é atualizado, o build da imagem é realizado a	automaticamente, após o comando enviado.
+Porém, enquanto não houve atualização de versão para a alteração do projeto, é necessário enviar 
+o parâmetro --build para executar o procedimento de build da aplicação: 
+$ docker-compose up -d --build
+
+
+
+Variáveis de ambiente - Dockercompose: 
+
+Sintaxe: ${argumento}
+Exemplo: ${tag}
+
+O valor desse agumento deve ser definido em um arquivo denominado .env
+
+O conteúdo desse arquivo deve ser relacionado: 
+tag=latest 

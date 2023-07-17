@@ -1,0 +1,40 @@
+ - O docker dispõe por padrão de três redes: bridge, host e none;
+ - A rede bridge é usada para comunicar containers em um mesmo host;
+ - Redes bridges criadas manualmente permitem comunicação via hostname;
+ - A rede host remove o isolamento de rede entre o container e o host;
+ - REDE Overlay - Comunicação entre vários docker host. Geralmente aplicado quando utilizar a orquestração de Docker Swarm
+ - A rede none remove a interface de rede do container; 
+ 
+ 
+Manage networks
+
+Commands:
+  connect     Connect a container to a network.
+ 
+ Conectar um container à rede: 
+ > docker network connect <nome-da-rede> <id-do-container>
+ 
+ Exemplo: 
+ $ docker network connect aula-docker 3fe5ead4f0e2
+  
+ Criar uma novo container conectado à rede: 
+ > docker container run -d --network <nome-da-rede> --name <nome-do-container> nginx
+ 
+ Exemplo
+ $ docker container run -d --network aula-docker --name nginx nginx
+ 
+ LEMBRE: O Parâmetro --name é opcional, nesse caso.
+ 
+  create      Create a network
+ Criar uma nova rede: 
+ > docker network create <nova-rede>
+ Exemplo: 
+ $ docker network create aula-docker
+ 
+  disconnect  Disconnect a container from a network
+  inspect     Display detailed information on one or more networks
+  ls          List networks
+  prune       Remove all unused networks
+  rm          Remove one or more networks
+
+Run 'docker network COMMAND --help' for more information on a command

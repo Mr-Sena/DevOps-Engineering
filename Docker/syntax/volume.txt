@@ -1,0 +1,40 @@
+Tipos de volume para persistência de dados: 
+
+ - Bind Mount: Mapear um diretório do container para um diretório do host.
+
+ - Volume: Volume gerendiado pelo Docker.
+
+ - tmpfs (temp file-system): Repositório armazenado em memória.
+
+
+
+
+Bind Mount - Container volume
+
+Criar um novo volume com o diretório associado com a máquina host: 
+ > docker container run -it -v "<path-do-diretorio>" ubuntu <interface-utilizado-para-fazer-o-acesso>
+
+Exemplo: 
+ $ docker container run -it -v "$(pwd)/vol:/app" ubuntu /bin/bash
+
+Lembre-se: é importante que o que esse caminho tenha a referência ao "vol:" para fazer o volume.
+
+
+
+Para usar o Volume Docker deve ser criado primeiro um volume; 
+ > docker volume create <nome-do-volume>
+
+Executar o container com a seguinte referência: 
+ $ docker container run -it -v "aula_docker:/app" ubuntu /bin/bash
+
+Porém, esse tipo de volume parece que não é 100% transparente com a proposta do Docker Desktop.
+
+
+
+
+Alternativa para definir um volume: 
+ > docker container run -it --mount type=<tipo-de-volume>,src=<diretorio-source>,dst=<diretorio_destino> <imagem> bin/bash
+
+ Exemplo: 
+ $ docker container run -it --mount type=bind,src="$(pwd)",dst=/app ubuntu bin/bash
+ $ docker container run -it --mount type=volume,src="aula_docker",dst=/app ubuntu bin/bash
