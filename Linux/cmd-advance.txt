@@ -1,0 +1,22 @@
+ - Utilizar o pipe para fazer a combinação de comando. Exemplo: 
+ - Lista de comandos que foram acessado/modificados 19h28: 
+ $ ls -l | grep 19:28
+
+ - Arquivo com o nome contendo 'cmd': 
+ $ ls | grep cmd
+
+
+
+ - Exportar toda resposta do resultado para um arquivo. 
+ $ ls -a > conteudo-pasta.txt
+
+ - Concatenar a saída com o conteúdo presente no arquivo: 
+ $ ls -l >> contendo-pasta.txt
+
+ - Exportar um comando que houve erro: 
+ $ mkdir logs/sistema 2> output.txt
+
+OBS: Nesse contexto diretório logs não existe, portanto vai ser gerado uma resposta com erro. Também chamado de stderr
+
+PS: stdin = Entrada do comando
+    stdout = Resposta do resultado

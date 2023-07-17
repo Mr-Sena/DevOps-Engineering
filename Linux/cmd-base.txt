@@ -1,0 +1,43 @@
+Comandos básicos: 
+
+ - Informações do Sistema
+
+ $ uname
+ > Linux
+
+ Flags: 
+
+  -s: Nome do Kerner (Default)
+  -n: Distribuição Linux 
+  -o: Nome do Sistema Operacional
+  -a, --all: Todas as informações do sistema.
+
+
+
+ $ clear -> Limpa o terminal do Linux.
+
+
+ $ sudo -> Executar um comando com privilégios de acesso. Exemplo; 
+ $ sudo <comando>
+
+
+ - Acessar o terminal como superusuário: 
+ $ sudo su
+
+
+ - Quem acessou a máquina: 
+ $ who
+
+
+
+ - Consumo da máquina: 
+ $ free
+
+
+ - Desligar a máquina com o terminal: 
+ $ shutdown
+
+
+
+ - Descrição sobre o comando, utilizar o o recurso man. Exemplo:
+ $ man shutdown

@@ -1,0 +1,56 @@
+ - Local do diretório: 
+ $ pwd
+
+
+ - Lista de conteúdo do diretório: 
+ $ ls
+
+
+ - Acessar um diretório xpto: 
+ $ cd xpto
+
+ - Voltar para o diretório do nível anterior. 
+ $ cd ..
+
+ 
+ - Criar um diretório: 
+ $ mkdir nome-do-diretorio
+
+ - Criar diretórios com todos os níveis necessário, caso não esteja presente: 
+ $ mkdir -p modulo/menu-principal/pasta-destino
+
+
+ - Remove um arquivo: 
+ $ rm nome-do-arquivo
+
+ - Remover um diretório completo: 
+ $ rm -r nome-do-diretorio-completo
+
+
+ - Copiar um arquivo: 
+ $ cp cmd-fileSystem.txt back-up/cmd-terminal.txt
+
+ - Copiar um diretório: 
+ $ cp -r back-up backup
+
+
+ - Mover arquivos/diretórios: 
+  $ mv nome-arquivo destino-final-arquivo
+
+
+Criar um novo arquivo, ou simplesmete muda a hora da última alteração do arquivo: 
+ $ touch nome-do-arquivo
+
+
+Conteúdo de um arquivo: 
+ $ cat nome-do-arquivo
+
+Comando More também funciona. Exemplo: 
+$ more nome-do-arquivo
+
+
+Filtrar o conteúdo do arquivo: 
+ $ grep nome-do-arquivo palavra-chave
+
+ Parâmetros
+ -n: Número da linha da consulta

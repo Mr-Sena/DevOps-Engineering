@@ -1,0 +1,20 @@
+Instalar um pacote - dpkg (Debian Package): 
+ $ sudo dpkg -i <localizacao-do-recurso>
+
+
+Desinstalar o pacote 
+ $ sudo dpck -r <nome-do-pacote>
+
+Exemplo: 
+ $ sudo dpck -r code
+
+
+
+Instalar um pacote online - APT
+ $ apt get install nome-pacote
+
+ * IMPORTANTE: manter o gerenciamento de pacote atualizado. 
+ $ sudo apt update 
+
+Remover um pacote: 
+ $ sudo apt remove <nome-do-pacote>

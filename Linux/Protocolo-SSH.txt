@@ -1,0 +1,25 @@
+ - Protocolo para TROCA seguda de informação
+ - Execução REMOTA de comandos
+ - Trabalha com usuário e senha ou para de chaves
+ - Leve e fácil uso
+ - Amplamente utilizado no mercado
+
+
+Como efetuar o login: 
+ $ ssh root@<ipv4>
+Exemplo: 
+ $ ssh root@64.227.10.49
+
+Para efetuar o acesso através de uma chave SSH, o mecanismo é o mesmo. 
+OBS: Caso necessário informar o caminho da chave privada utilizar o parâmetro -i.
+ $ ssh -i ~/.ssh/id_rsa root@174.138.34.221
+
+
+IMPORTANTE - Como Gerar um par de chaves SSH:
+ $ ssh-keygen -t <tipo-de-chave> -b <tamanho-da-chave>
+
+Exemplo: 
+ $ ssh-keygen -t rsa -b 2048
+
+LEMBRE-SE: a chave é rsponsável por liberar o acesso. Ela deverá ser guardada.
+

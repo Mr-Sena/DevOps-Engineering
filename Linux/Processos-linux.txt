@@ -1,0 +1,23 @@
+Listar todos os processos em execução gerenciados pelos terminal: 
+ $ ps
+
+Todos os processos criados por todos os usuários, e gerencado pelo terminal
+ $ ps -a
+
+Processos criados por usuários e que não são controlados pelo termina: 
+ $ ps -ax
+
+Mostar o criador do processo: 
+ $ ps -axu
+
+
+Encerrar um processo: 
+ $ kill <pid-do-processo>
+
+O PID é um coluna em evidência para consultar os processos em execução
+
+
+Consultar os recursos da máquina através do terminal: 
+ $ htop
+
+OBS: htop é um pacote, e caso não esteja presente deve ser instalado: $ sudo apt instal htop
