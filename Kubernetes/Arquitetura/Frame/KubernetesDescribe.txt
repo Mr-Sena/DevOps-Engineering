@@ -23,8 +23,9 @@ Worker Node:
 
  - Componentes: 
 	+ Kube Proxy -> Garantir a comunicação entre todos os workers node dentro do cluster.
-	+ Kubelet -> Execução de todos os containers. Além de oferecer o seu healthCheck
+	+ Kubelet -> Execução de todos os containers(?). Além de oferecer o seu healthCheck
 		OBS: Ele é responsável por interagir diretamente com o Container Runtime, porém, o Kubernete não possui o Container Runtime próprio. (Ele faz somente a orquestração do container, portanto, não a execução.)
+	+ Container Runtime -> Possui a função para executar o container (Disponível para a interface).
 
 3 Interfaces de comunicação básica: 
  - CRI (Container Runtime Interface) [containerD, cri-o]

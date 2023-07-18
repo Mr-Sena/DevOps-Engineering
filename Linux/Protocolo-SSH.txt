@@ -1,6 +1,6 @@
- - Protocolo para TROCA seguda de informação
+ - Protocolo para TROCA segura de informação
  - Execução REMOTA de comandos
- - Trabalha com usuário e senha ou para de chaves
+ - Trabalha com usuário e senha ou par de chaves
  - Leve e fácil uso
  - Amplamente utilizado no mercado
 
