@@ -1,0 +1,36 @@
+Criação de um cluster default
+ > k3d cluster create
+ 
+Criação de um cluster com nome: 
+ > k3d cluster create <cluster-name>
+
+Exemplo: 
+k3d cluster create meu-cluster
+
+
+Criação de um cluster com nome e qtde de servers: 
+ > k3d cluster create meuCluster --servers 3 --agents 3
+ 
+ 
+Criação de um cluster com bind de porta (vínculo localhost e container): 
+ > k3d cluster create <...> -p "<porta-de-acesso>:<porta-de-exposição-container>"
+ 
+Exemplo: 
+ > k3d cluster create meuCluster -p "30000:30000@loadbalancer"
+OBS: @loadbalancer é um recurso para fazer o balanceamento de cargas entre os cluster
+
+Obs: Aparentemente as portas que estão vínculadas com o bind do cluster estão acessíveis mesmo fora de um cluster de serviço.
+
+Get nodes:
+ > kubectl get nodes
+	
+
+Lista de cluster:
+ > k3d cluster list
+ 
+
+Excluir um cluster: 
+ > k3d cluster delete
+ 
+...Se o Cluster tiver nome: 
+ > k3d cluser delete meuCluster

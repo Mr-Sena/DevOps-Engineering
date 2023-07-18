@@ -1,0 +1,90 @@
+Criação de pod: 
+kubectl create -f <nome-do-manifesto-do-pod.yaml>
+
+Exemplo: kubectl create -f .\pod.yaml
+
+Aplicar atualização do pod/replica-set/deployment: 
+ > kubectl apply -f <nome-do-manifesto-do-pod.yaml>
+ 
+ 
+ 
+listar os pods:
+kubectl get pods
+
+Assistir o processamento dos pods em tempo real?: 
+watch 'kubectl get pods'
+
+
+listar os replicaset: 
+kubectl get replicaset
+
+
+Lista de deployment: 
+λ kubectl get deployment
+
+Lista de services: 
+kubectl get services 
+
+Listar todos os resources (pod, services, deployments, etc.): 
+kubectl get all
+
+
+
+
+
+Descrição sobre o pod: 
+ > kubectl describe pod <nome-do-pod-espectificado-no-manifesto>
+ 
+Exemplo: 
+kubectl describe pod meu-pod
+
+
+Descrição sobre o replicaset: 
+ > kubectl describe replicaset <nome-do-replicaset-especificado-no-manifesto>
+ 
+Exemplo: 
+ > kubectl describe replicaset meu-replica-set
+ 
+
+Descrição sobre um deployment: 
+kubectl describe deployment <nome-do-deployment-especificado-no-manifesto>
+
+Exemplo: 
+ > kubectl describe deployment meu-deployment
+
+
+
+consultar um pod pela legenda: 
+ > kubectl get pods -l <nome-label>=<valor-label>
+ 
+Exemplo: 
+> kubectl get pods -l cor=azul
+
+
+
+Exluir um pod: 
+ > kubectl delete -f <nome-do-manifesto-do-pod>.yaml
+
+Exemplo: 
+ > kubectl delete -f .\pod.yaml
+
+OBS: comando serve também os demais recursos. (deployment, pro exemplo.)
+
+Consultar deploy history:
+ > kubectl rollout history deployment <manifesto-deployment>
+
+Desfazer último deployment, retornar para o deploy anterior: 
+ > kubectl rollout undo deployment <deployment-especificado-no-manifesto>
+ 
+Exemplo: 
+ > kubectl rollout undo deployment meu-deployment
+ 
+ 
+ 
+Encaminhamento de porta no pod para acessar na máquina local:
+$ kubectl port-forward pods/<name-do-pod> <porta-para-liberar-acesso>:<porta-definida-na-configuração-para-aplicação>
+
+Exemplo: 
+$ kubectl port-forward pods/meu-deployment-85c548545b-zzqxd 8080:80
+
+OBS: Nesse caso o kubernetes está rodando em um container Docker.
