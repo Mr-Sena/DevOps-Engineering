@@ -17,11 +17,13 @@ Commands:
  Exemplo: 
  $ docker network connect aula-docker 3fe5ead4f0e2
   
+
  Criar uma novo container conectado à rede: 
  > docker container run -d --network <nome-da-rede> --name <nome-do-container> nginx
  
  Exemplo
  $ docker container run -d --network aula-docker --name nginx nginx
+ 
  
  LEMBRE: O Parâmetro --name é opcional, nesse caso.
  

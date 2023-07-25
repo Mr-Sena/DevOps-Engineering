@@ -1,0 +1,37 @@
+version: '3.8'
+
+volumes: 
+  mongo_vol:
+
+networks:
+  expresso_cnx: 
+    driver: bridge
+
+services: 
+  mongodb:
+    image: mongo
+    ports: 
+     - 27017:27017
+    networks: 
+     - expresso_cnx
+    volumes:
+      - mongo_vol:/data/db
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: mongopwd
+
+  mongo-exp: 
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    image: mongo-express
+    ports:
+     - 8081:8081
+    networks: 
+     - expresso_cnx
+    environment:
+     ME_CONFIG_MONGODB_ADMINUSERNAME: mongouser
+     ME_CONFIG_MONGODB_ADMINPASSWORD: mongopwd
+     ME_CONFIG_MONGODB_URL: mongodb://mongouser:mongopwd@mongodb:27017/?authSource=admin
+     ME_CONFIG_BASICAUTH_USERNAME: mexpress
+     ME_CONFIG_BASICAUTH_PASSWORD: mexpress

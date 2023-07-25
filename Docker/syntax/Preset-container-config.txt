@@ -1,7 +1,12 @@
 
 docker container run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME="mongouser" -e MONGO_INITDB_ROOT_PASSWORD="mongopwd"  -v mongo_database:/data/db --name mongodb --network produto_network mongo:4.4.3
 
-IMPORTANTE: Aparentemente o volume guarda as credenciais de login. Portanto, não é possível acessar uma nova base no mesmo volume com o login diferente.
+IMPORTANTE: Aparentemente persiste todo os dados do container em volume, inclusive as credenciais de login. 
+Portanto, é considerável utilizar um volume diferente para container/versão diferentes, pois, 
+não é possível acessar uma nova base no mesmo volume com o login diferente, nesse caso. O problema de incompatibilidade pode aparecer enquanto houver, por exemplo, versão diferente da mesma imagem de um container.
+
+ - Porém, ao alterar o volume da base de dados do mongodb, o diretório interno permanece com o mesmo path -> /data/db
+ esse é o diretório padrão que o container utiliza para gravar o seu arquivo de dados. Exemplo: -v mongo_db:/data/db
 
 
 Container utilizado em conjunto para subir o back-end de uma aplicação: 
