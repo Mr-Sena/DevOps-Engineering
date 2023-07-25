@@ -1,0 +1,51 @@
+ - Como criar uma máquina virtual: 
+multipass launch -n <nome-da-maquina-virtual> -c <qtde-núcleos-CPU> -m <qtde-memoria> -d <qtde-disco>
+
+Exemplo: 
+ $ multipass launch -n k8s -c 2 -m 2gb -d 20gb
+
+
+ - Verificas as máquina em atividade: 
+    $ multipass list
+
+ - Como acessar o terminal da máquina:
+    > multipass shell <nome-da-maquina>
+ 
+   Exemplo:
+    $ multipass shell k8s
+
+
+ - Enviar um comando sem conectar o terminal
+    > multipass exec k8s -- <comando>
+   
+   Exemplo: 
+    $ multipass exec k8s -- cat teste.txt
+
+
+ - Consultar o consumo da máquina virtual: 
+   $ multipass info <nome-da-maquina>
+
+   Exemplo: 
+    $ multipass info k8s
+
+
+ - Excluir uma máquina virtual: 
+   > multipass delete k8s
+
+   Exemplo: 
+    $ multipass delete k8s
+
+A máquina virtual quando é excluída permanece visível à lista de instâncias. Portanto é possível recuperar a imagem. 
+ > multipass recover <nome-da-maquina-virtual>
+
+ Exemplo:
+  $ multipass recover k8
+
+Para retornar a atividade da máquina virtual, o comando precisar fazer a inicialização: 
+ > multipass start <nome-da-maquina-virtual>
+
+ Exemplo: 
+  multipass start k8s
+
+ Para excluir completamente o registro, o comando deve remover a máquina virtual que foi excluida.
+ $ multipass purge

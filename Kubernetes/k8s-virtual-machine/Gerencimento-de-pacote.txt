@@ -1,0 +1,31 @@
+Como configurar o multipass
+
+ - Executar o comando para baixar o Snapcraft --> The app store for Linux
+    $ sudo apt update
+    $ sudo apt install snapd
+
+ - multipass download: 
+    $ snap install multipass
+
+
+
+ - Baixar o microk8s para a máquina virtual: 
+  $ multipass exec k8s -- sudo snap install microk8s --classic --channel=1.18/stable
+    * OBS: O channel é a versão do k8s
+
+ - Adicionar a permissão de acesso para o usuário: 
+   > multipass exec k8s -- sudo usermod -a -G <app> <user>
+
+   Exemplo: 
+    $ multipass exec k8s -- sudo usermod -a -G microk8s ubuntu
+
+
+ - Permissão para o usuário acessar o diretório da pasta: 
+   > multipass exec k8s -- sudo chown -f -R ubuntu ~/.kube
+
+   Exemplo, permitir o usuário 'ubuntu' acessar a pasta as configurações da pasta .kube
+    $ multipass exec k8s -- sudo chown -f -R ubuntu ~/.kube
+
+
+ - Reinicialização da máquina: 
+   $ multipass restart k8s

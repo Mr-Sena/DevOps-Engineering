@@ -1,0 +1,13 @@
+
+- Qualquer comando executado fora da máquina virtual (multipass), deve utilizar essa sintaxe:
+  $ multipass exec <nome-da-maquina> -- /snap/bin/microk8s.kubectl <comando-kubectl>
+
+ - Node do cluster: 
+  $ multipass exec k8s -- /snap/bin/microk8s.kubectl get nodes
+
+ - Criar um um deployment nginx: 
+  $ multipass exec k8s -- /snap/bin/microk8s.kubectl create deployment nginx --image=nginx
+
+ - Verificar os pods: 
+  $ multipass exec k8s -- /snap/bin/microk8s.kubectl get pods
+
