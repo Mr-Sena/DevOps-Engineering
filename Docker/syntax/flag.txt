@@ -1,0 +1,18 @@
+
+ =-=-=- OPÇÃO =-=-=-
+
+
+ > Use container hostname ( similar a alias). 
+	--hostname, -h
+
+	Apply: 
+	
+	$ docker run -d --rm --network maria-cia \
+    --name mariadb \
+    -e MARIADB_USER=josemaria \
+    -e MARIADB_PASSWORD=secret123 \
+    -e MARIADB_ROOT_PASSWORD=adminroot4321 \
+    -p 3306:3306 \
+    -v maria_db:/var/lib/mysql \
+    -h db \
+    mariadb
