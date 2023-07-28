@@ -1,0 +1,33 @@
+version: '3.8'
+
+volumes: 
+  postgres_vol:
+
+networks:
+  postgres-work:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres
+    ports: 
+     - 5432:5432
+    networks: 
+     - postgres-work
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
+    environment: 
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: usuariopostgres
+      POSTGRES_DB: datashow
+  
+  pgadmin: 
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
+    networks: 
+      - postgres-work
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: SuperSecret
+      
