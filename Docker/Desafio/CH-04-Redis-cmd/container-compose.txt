@@ -1,0 +1,30 @@
+
+docker run redis
+
+
+ $ docker run --name redis -d --rm \
+    --network redis-network \
+    -v myredis:/data \
+    -p 6379:6379 \
+    redis redis-server --save 30 1
+
+
+
+
+
+
+ $ docker run --name redis-comander --rm\
+    -p 8081:8081 \
+    -e REDIS_HOSTS=redis \
+    --network redis-network \
+    rediscommander/redis-commander
+
+
+
+
+
+
+
+ # Acessar a interface de linha de comando (redis-cli)
+docker exec -it <redis-container> redis-cli
+

@@ -1,0 +1,30 @@
+version: '3.8'
+
+volumes:
+  myredis:
+
+networks:
+  redis-online: 
+    driver: bridge
+    
+
+services:
+  redis: 
+    image: redis
+    volumes: 
+     - myredis:/data
+    networks:
+     - redis-online
+    ports:
+      - 6379:6379
+    environment: 
+      REDIT_ARGS: "--save 30 1"
+
+  redis-commander: 
+    image: rediscommander/redis-commander
+    networks: 
+      - redis-online
+    ports: 
+      - 8081:8081
+    environment: 
+      REDIS_HOSTS: redis
