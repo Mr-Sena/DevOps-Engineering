@@ -1,6 +1,6 @@
-[submodule "Docker/Desafio/conversao-temperatura"]
-	path = Docker/Desafio/conversao-temperatura
-	url = https://github.com/Mr-Sena/conversao-temperatura
 [submodule "Docker/Desafio/CH-06-Conversor/conversao-temperatura"]
 	path = Docker/Desafio/CH-06-Conversor/conversao-temperatura
 	url = https://github.com/Mr-Sena/conversao-temperatura
+[submodule "Docker/Desafio/CH-06-Conversor/conversao-distancia"]
+	path = Docker/Desafio/CH-06-Conversor/conversao-distancia
+	url = https://github.com/Mr-Sena/conversao-distancia
