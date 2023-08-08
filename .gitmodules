@@ -1,0 +1,3 @@
+[submodule "Docker/Desafio/conversao-temperatura"]
+	path = Docker/Desafio/conversao-temperatura
+	url = https://github.com/Mr-Sena/conversao-temperatura
