@@ -25,6 +25,14 @@ docker run redis
 
 
 
- # Acessar a interface de linha de comando (redis-cli)
+ # Acesso à interface de linha de comando (redis-cli)
 docker exec -it <redis-container> redis-cli
 
+
+
+
+docker run --name redis-stack -d \
+   -p 6379:6379 -p 8001:8001 \
+   -v redis-server:/data \
+   redis/redis-stack redis-server --save 30 1
+ [ Esse serviço apresentou inconsistência para persistência de dados ]

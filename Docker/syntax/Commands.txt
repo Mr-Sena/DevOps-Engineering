@@ -271,13 +271,14 @@ detalahmento dos serviços:
 
 
 
-ATENÇÃO: Dockerfile é um recurso para definir uma imagem docker. 
-O arquivo docker-compose.yaml, porém, possuí a responsabilidade para criar o container.
-Contudo, é possível configurar o ambiente para executar esse modelo Build e Run em conjunto.
+ATENÇÃO: Dockerfile é um recurso utilizado para definir a imagem de um aplicativo.
+Porém, o docker-compose.yaml permite configurar a criação de uma aplicação de container.
 
- - O Service da aplicação do Docker-compose, deve possuir a dicriminação do Dockerfile da imagem.
+Contudo, é possível configurar o ambiente para executar esse modelo Build and Run em conjunto.
 
-Quando uma nova versão do projeto é atualizado, o build da imagem é realizado a	automaticamente, após o comando enviado.
+ - O Service da aplicação do container do Docker-compose, deve possuir a dicriminação do Dockerfile da imagem.
+
+Quando uma nova versão (tag) do projeto é atualizado, o build da imagem é realizado automaticamente, após o comando enviado.
 Porém, enquanto não houve atualização de versão para a alteração do projeto, é necessário enviar 
 o parâmetro --build para executar o procedimento de build da aplicação: 
 $ docker-compose up -d --build
