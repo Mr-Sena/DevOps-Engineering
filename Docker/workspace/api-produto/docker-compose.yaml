@@ -11,8 +11,8 @@ services:
   api: 
     image: api-produto-kubdev:${TAG}
     build:  
-      dockerfile: ./Dockerfile
       context: ./src
+      dockerfile: ./Dockerfile
     ports: 
      - 8080:8080
     networks: 
