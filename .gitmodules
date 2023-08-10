@@ -4,3 +4,6 @@
 [submodule "Docker/Desafio/CH-06-Conversor/conversao-distancia"]
 	path = Docker/Desafio/CH-06-Conversor/conversao-distancia
 	url = https://github.com/Mr-Sena/conversao-distancia
+[submodule "Docker/Desafio/CH-06-Conversor/conversao-peso"]
+	path = Docker/Desafio/CH-06-Conversor/conversao-peso
+	url = https://github.com/Mr-Sena/conversao-peso.git
