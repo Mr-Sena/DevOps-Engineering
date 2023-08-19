@@ -294,3 +294,12 @@ O valor desse agumento deve ser definido em um arquivo denominado .env
 
 O conteúdo desse arquivo deve ser relacionado: 
 tag=latest 
+
+
+
+
+
+
+Docker context area: 
+ > Relação de contexto: 
+  $ docker context ls
