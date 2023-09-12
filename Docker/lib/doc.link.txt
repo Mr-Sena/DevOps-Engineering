@@ -1,13 +1,8 @@
-Cotinue: https://stackoverflow.com/questions/7744147/pymongo-keeps-refusing-the-connection-at-27017#:~:text=If%20you%20found%20this%20page%20because%20you%20use%20Docker
-
-
 GPC CI/CD [ https://www.youtube.com/watch?v=Sh4I-s7O8rs ] 
  - Docker Deploy: https://www.youtube.com/watch?v=F_pgDkErFIk
+ - AWS Docker Deploy: https://www.youtube.com/watch?v=kqBCHYf_adA 
  
- 
- 
- 83kf
- 
+
 Deploy your app: (Python)
  > https://docs.docker.com/language/python/deploy/
 
