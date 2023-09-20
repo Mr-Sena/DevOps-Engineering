@@ -1,3 +1,8 @@
+o K3D permite criar um cluster k8s para orquestar aplicação em container, de uma forma simples.
+Nesse caso, a tecnologia é uma recursividade, pois, o próprio sistema será criado dentro de um container docker.
+
+O cluster deve ser iniciado para permitir que o Kubernetes seja habilitado.
+
 Criação de um cluster default
  > k3d cluster create
  

@@ -88,3 +88,9 @@ Exemplo:
 $ kubectl port-forward pods/meu-deployment-85c548545b-zzqxd 8080:80
 
 OBS: Nesse caso o kubernetes está rodando em um container Docker.
+
+
+
+
+ > Consultar a versão do endpoint da API do k8s: 
+  $ kubectl api-resource
