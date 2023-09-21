@@ -11,6 +11,9 @@ Aplicar atualização do pod/replica-set/deployment:
 listar os pods:
 kubectl get pods
 
+ > Mais informações sobre o pod: 
+	$ kubectl get pods -o wide
+
 Assistir o processamento dos pods em tempo real?: 
 watch 'kubectl get pods'
 
