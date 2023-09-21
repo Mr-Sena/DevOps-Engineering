@@ -7,3 +7,9 @@
 [submodule "Docker/Desafio/CH-06-Conversor/conversao-peso"]
 	path = Docker/Desafio/CH-06-Conversor/conversao-peso
 	url = https://github.com/Mr-Sena/conversao-peso.git
+[submodule "Docker/Desafio/CH-07-AppDeploy/rotten-potatoes"]
+	path = Docker/Desafio/CH-07-AppDeploy/rotten-potatoes
+	url = https://github.com/Mr-Sena/rotten-potatoes.git
+[submodule "Docker/Desafio/CH-07-AppDeploy/kube-news"]
+	path = Docker/Desafio/CH-07-AppDeploy/kube-news
+	url = https://github.com/Mr-Sena/kube-news.git
