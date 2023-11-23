@@ -143,9 +143,12 @@ Exemplo: um service que foi designado para a porta 80 é conectado dentro do clu
 permitir que o acesso seja efetuado em conjunto com o ip do node. Dessa forma: 
  $ <node-ip>:<service-port>
 
+$ Dica: Consultar o ip do node do cluster.
+  > kubectl get node -o wide
+
 Porém, essa alternativa não é muito prático quando o cluster da máquina em provisionada para o k3d em container.
 
-Nesse caso, a alternativa é mapear as portas para criar um cluster k3d com a porta do node direcionado. Exemplo: 
+Nesse caso, a alternativa é mapear as portas para criar um cluster k3d com a porta do node direcionada. Exemplo: 
  $ k3d cluster create my-cluster -p "<port-forward>:<node-port>@server:0"
 
 Lembrete: O NodePort possui um range de porta entre [30000-32767]. Portanto é importante definir o nodePort para export o service.
