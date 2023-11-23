@@ -1,0 +1,18 @@
+ * Pre-req:
+ Vs Code installed
+    Plugins: 
+     - Docker --> For connect to registry hub.
+     - Azure --> The resource provider
+     
+     Acessar o registry da imagem do container. (Docker hub, por exemplo.)
+     Porém, é importante adicionar o registry para o Azure também.
+     
+     O primeiro resources, deve garantir que o subscription seja criado, e o 
+     registro Microsoft.Web deve ser cadastrado para a subscription. 
+     --> Acessar Provedores de recursos [ https://portal.azure.com/#@joaouserconhotmail.onmicrosoft.com/resource/subscriptions/1c458f80-09e6-4bfb-a32d-4de0f2afeacf/resourceproviders ], e criar o cadastro.
+     
+     
+     - Após a config da conta, acessar a guia do Docker, dentro do Registry, abrir o seu Docker Hub, 
+     selecionar a imagem com o botão direito, "Deploy Image to Azure App Service"
+     
+     Configurar o web service, e enviar o deploy.
