@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: primerpod
+  labels: 
+    app: nginx
+    versao: azul
+spec: 
+  containers:
+    - name: primercontainer
+      image: kubedevio/nginx-color:blue

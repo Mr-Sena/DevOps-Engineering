@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: replicasetprime
+spec: 
+  replicas: 10
+  selector: 
+    matchLabels: 
+      app: nginx-color
+  template: 
+    metadata:
+      labels:
+        app: nginx-color
+    spec: 
+      containers:
+        - name: primecontainer
+          image: kubedevio/nginx-color:blue

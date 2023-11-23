@@ -7,11 +7,17 @@ Aplicar atualização do pod/replica-set/deployment:
  > kubectl apply -f <nome-do-manifesto-do-pod.yaml>
  
  
+ Ampliar o replicaset: 
+  > kubectl scale replicaset <replica-set-name> --replicas=10
+  
+  Obs: Replicaset não é capaz de gerenciar a atualização de versão em tempo real. 
+  Após uma alteração do manifesto, por exemplo, para alterar a imagem do container.
+ 
  
 listar os pods:
 kubectl get pods
 
- > Mais informações sobre o pod: 
+ > Mais informações sobre o pod, por exemplo worker-node da rede do cluster: 
 	$ kubectl get pods -o wide
 
 Assistir o processamento dos pods em tempo real?: 
@@ -32,6 +38,10 @@ Listar todos os resources (pod, services, deployments, etc.):
 kubectl get all
 
 
+Enviar a consulta para todos namespace do cluster. --> 
+   $ kubectl get pods --all-namespaces 
+ --> e para buscar os Pods de uma determinada namespace usa-se o comando 
+  $ kubectl get pods -n <NAMESPACE_NAME>
 
 
 
@@ -73,6 +83,14 @@ Exemplo:
 
 OBS: comando serve também os demais recursos. (deployment, pro exemplo.)
 
+
+
+Alterar somente a imagem do container, via comando CLI
+ > kubectl set imagem deployment <nome-do-deployment> <nome-do-container>=<nome-da-image>
+  Exemplo:
+   $ kubectl set imagem deployment primedeployment primecontainer=nginx
+
+
 Consultar deploy history:
  > kubectl rollout history deployment <manifesto-deployment>
 
@@ -81,6 +99,12 @@ Desfazer último deployment, retornar para o deploy anterior:
  
 Exemplo: 
  > kubectl rollout undo deployment meu-deployment
+ 
+ you can rollback to a specific version with:
+
+ $ kubectl rollout undo deployment/<deployment> --to-revision=<history-revision-number>
+  Exemplo: 
+   $ kubectl rollout undo deployment/app --to-revision=2
  
  
  
@@ -94,6 +118,41 @@ OBS: Nesse caso o kubernetes está rodando em um container Docker.
 
 
 
-
- > Consultar a versão do endpoint da API do k8s: 
+														
+ > Consultar a versão do endpoint da API do k8s: 																																																																
   $ kubectl api-resource
+
+
+
+ * Podemos enviar um comando para criar um pod e executar o seu contaienr em modo interativo.  
+  > kubectl run -i --tty --image <image> <pod-name> --restart=Never --rm /bin/bash
+ Exemplo Curl: 
+  $ kubectl run -i --tty --image kubedevio/ubuntu-curl ping-test --restart=Never --rm /bin/bash
+  
+
+
+
+
+ * Como acessar um Service NodePort. 
+
+É possível acessar o service, através do endereço do ip do node. 
+Porém não precisa ser exatamente o node em que esta localizado o pod ou mesmo o service.
+O caminho é direcionado automaticamente para o service que utiliza aquela porta dentro do cluster.
+
+Exemplo: um service que foi designado para a porta 80 é conectado dentro do cluster para 
+permitir que o acesso seja efetuado em conjunto com o ip do node. Dessa forma: 
+ $ <node-ip>:<service-port>
+
+Porém, essa alternativa não é muito prático quando o cluster da máquina em provisionada para o k3d em container.
+
+Nesse caso, a alternativa é mapear as portas para criar um cluster k3d com a porta do node direcionado. Exemplo: 
+ $ k3d cluster create my-cluster -p "<port-forward>:<node-port>@server:0"
+
+Lembrete: O NodePort possui um range de porta entre [30000-32767]. Portanto é importante definir o nodePort para export o service.
+
+Hípotese: 
+ $ k3d cluster create my-cluster -p "8082:30080@server:0"
+
+Note 1: Kubernetes’ default NodePort range is 30000-32767
+Note 2: You may as well expose the whole NodePort range from the very beginning, e.g. via 
+k3d cluster create mycluster --agents 3 -p "30000-32767:30000-32767@server:0" 

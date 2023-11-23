@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: new-api
+spec: 
+  selector: 
+    matchLabels: 
+      app: new-api
+  template: 
+    metadata: 
+      labels: 
+        app: new-api
+    spec:
+      containers:
+        - name: new-container
+          image: joaoinvernal/converter-temperatura-js:v1

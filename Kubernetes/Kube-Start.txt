@@ -1,0 +1,24 @@
+O kubernetes permite provisionar uma infraestrutura resiliente em alta escalabilidade. (k8s)
+
+ - A ferramenta possui quatro elementos básico:
+  * Pod
+  * ReplicaSet
+  * Deployment
+  * Service
+  
+   + Esse conjunto também envolve o conceito de Labels e Selectors.
+   
+   
+    - O pod é o menor objeto dentro do cluster k8s. Local onde é executado os containers.
+    
+
+  O Pod é criado atraves de um arquivo .yaml declarativo, um manifesto, que define todas as cocnfigurações.
+  
+  Geralmente, esse arquivo possui quatro atributos básico: 
+   + apiVersion --> um tipo de resource group (Exmplo: v1)
+   + kind --> resource kind (Exemplo: Pod)
+   + metadata --> Atributos para definir o manifesto. (Exemplo --> name: meuprimeiropod)
+   + spec --> Container config.
+   
+   -> resource apiVersion: 
+   $ kubectl api-resources
