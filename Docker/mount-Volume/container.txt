@@ -1,1 +1,3 @@
-Mount bind
+ * Mount bind - Exemplo: 
+
+docker container run -e MYSQL_ROOT_PASSWORD=senha1234 -p 3306:3306 --mount "type=bind,source=/home/mr_sena/volume-data/mysql,target=/var/lib/mysql" -d --name mysql mysql
