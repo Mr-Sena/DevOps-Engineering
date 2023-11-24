@@ -159,3 +159,13 @@ Hípotese:
 Note 1: Kubernetes’ default NodePort range is 30000-32767
 Note 2: You may as well expose the whole NodePort range from the very beginning, e.g. via 
 k3d cluster create mycluster --agents 3 -p "30000-32767:30000-32767@server:0" 
+
+
+ * Endpoint Kubernetes
+
+ O Endpoint é responsável para conectar um conjunto de pod com o service do aplicativo.
+
+  $ kubectl get endpoints
+
+Obs: O endpoint faz o bind com o service somente quando o pod estiver habilitado.
+
