@@ -159,6 +159,8 @@ Hípotese:
 Note 1: Kubernetes’ default NodePort range is 30000-32767
 Note 2: You may as well expose the whole NodePort range from the very beginning, e.g. via 
 k3d cluster create mycluster --agents 3 -p "30000-32767:30000-32767@server:0" 
+ |
+ +--> Exemplo: k3d cluster create my-cluster -p "8080-8082:30080-30082@server:0"
 
 
  * Endpoint Kubernetes
