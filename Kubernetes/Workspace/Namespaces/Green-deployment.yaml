@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-color-deploy
+spec: 
+  selector: 
+    matchLabels: 
+      app: nginx-color
+  template: 
+    metadata: 
+      labels: 
+        app: nginx-color
+    spec: 
+      containers: 
+        - name: color-nginx
+          image: kubedevio/nginx-color:green
+
+ ## > kubectl apply -f Blue-deployment.yaml -n blue-space
+ ## O namespace precisa ser criado para provisionar o deployment: 
+ ## kubectl create namespace blue-space

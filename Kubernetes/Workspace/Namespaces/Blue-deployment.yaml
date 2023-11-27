@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nginx-color-deploy
+spec: 
+  selector: 
+    matchLabels: 
+      app: nginx-color
+  template: 
+    metadata: 
+      labels: 
+        app: nginx-color
+    spec: 
+      containers: 
+        - name: color-nginx
+          image: kubedevio/nginx-color:blue
+
+ ## > kubectl apply -f Green-deployment.yaml -n green-space
+ ## Existe uma outra forma para enviar o deploy, com o namepsace
+ ## Definido diretamente para o arquivo do manifeso
+ ## Adicionar o campo namespace para o metadata. Exemplo: 
+
+ ## metadata: 
+ ##   name: name
+ ##   namespace: nome-do-namespace

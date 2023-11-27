@@ -169,3 +169,17 @@ k3d cluster create mycluster --agents 3 -p "30000-32767:30000-32767@server:0"
 
 Obs: O endpoint faz o bind com o service somente quando o pod estiver habilitado.
 
+
+
+
+
+ * Kubernetes namespaces
+
+  + Uma namespace representa um cluster virtual isolado, criado dentro do cluster provisionado.
+   $ kubectl get namespaces
+
+  - Enviar o deploy para o namespace: 
+   $ kubectl apply -f Blue-deployment.yaml -n blue-space
+ 
+  - Criar um novo namespace: 
+   $ kubectl create namespace blue-space
