@@ -151,7 +151,7 @@ Porém, essa alternativa não é muito prático quando o cluster da máquina em 
 Nesse caso, a alternativa é mapear as portas para criar um cluster k3d com a porta do node direcionada. Exemplo: 
  $ k3d cluster create my-cluster -p "<port-forward>:<node-port>@server:0"
 
-Lembrete: O NodePort possui um range de porta entre [30000-32767]. Portanto é importante definir o nodePort para export o service.
+Lembrete: O NodePort possui um range de porta entre [30000-32767]. Portanto é importante definir o nodePort para expor o service.
 
 Hípotese: 
  $ k3d cluster create my-cluster -p "8082:30080@server:0"
@@ -161,6 +161,10 @@ Note 2: You may as well expose the whole NodePort range from the very beginning,
 k3d cluster create mycluster --agents 3 -p "30000-32767:30000-32767@server:0" 
  |
  +--> Exemplo: k3d cluster create my-cluster -p "8080-8082:30080-30082@server:0"
+
+ O acesso é enviado para conectar o localhost com a porta do vínculo. Exemplo 8082 --> 30082
+ Ship curl localhost: 
+  curl localhost:8082
 
 
  * Endpoint Kubernetes
@@ -185,3 +189,30 @@ Obs: O endpoint faz o bind com o service somente quando o pod estiver habilitado
  
   - Criar um novo namespace: 
    $ kubectl create namespace blue-space
+
+
+  - Como enviar um acesso para o service fora do namespace?
+    > A request para acessar o service deve possuir o nome DNS completo do endereço
+    Exemplo: 
+      $ curl http://<service-name>.<namespace>.svc.cluster.local
+
+    Hipótese: 
+      $ curl http://color-nginx-service.blue-space.svc.cluster.local
+
+    * Para expor esse service com mais facilidade, é possível configurar um terceiro service ExternalName
+    Fora do próprio namespace nativo, para víncular com o DNS do service relacionado.
+     (No caso o externalName desse service é o próprio DNS completo do endereço do primeiro service.)
+     
+    Portanto, o acesso pode ser realizado diretamente pelo namespace default, 
+    dessa forma, através do nome do Service ExternalName.
+     $ curl <ExternalName-Service-name>
+
+    Exemplo: 
+     $ curl blue-service-nginx
+
+
+  - Limites delimitados para um namespace: 
+     $ kubectl api-resources --namespaced=true
+
+     O que não é separado para esse contexto: 
+     $ kubectl api-resources --namespaced=false  

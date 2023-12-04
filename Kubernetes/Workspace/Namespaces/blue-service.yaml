@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: blue-service-nginx
+spec: 
+  type: ExternalName
+  externalName: color-nginx-service.blue-space.svc.cluster.local
+  ##Obs: É importante que esse DNS esteja relacionado com um outro service
+  ##    configurado dentro do namepsace que foi vínculado. (Nesse caso Blue-space)

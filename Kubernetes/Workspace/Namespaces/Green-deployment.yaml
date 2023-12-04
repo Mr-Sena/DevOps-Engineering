@@ -15,6 +15,14 @@ spec:
         - name: color-nginx
           image: kubedevio/nginx-color:green
 
- ## > kubectl apply -f Blue-deployment.yaml -n blue-space
- ## O namespace precisa ser criado para provisionar o deployment: 
- ## kubectl create namespace blue-space
+
+ ## $ kubectl create namespace green-space
+ ## > kubectl apply -f Green-deployment.yaml -n green-space 
+
+ ## Existe uma outra forma para enviar o deploy, com o namepsace
+ ## especificado diretamente para o arquivo do manifeso.
+ ## Adicionar o campo namespace para o metadata. Exemplo: 
+
+ ## metadata: 
+ ##   name: name
+ ##   namespace: nome-do-namespace
