@@ -4,3 +4,6 @@
 /Docker/workspace/api-produto/src/.gitignore/
 Docker/Desafio/CH-06-Conversor-source/
 Docker/Desafio/CH-07-AppDeploy-source/
+
+Kubernetes/Workspace/DotNet-K8s-Deploy/pedelogo-catalogo/.git
+Kubernetes/Workspace/DotNet-K8s-Deploy/pedelogo-catalogo/.gitignore
