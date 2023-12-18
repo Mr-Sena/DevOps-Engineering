@@ -1,0 +1,39 @@
+ - O que é cloud computing 
+ 
+ Computação em núvem é o uso e fornecimento de recursos computacionais como armazenamento, processamento, serviços para execução de aplicações e até soluções 
+ completas de software de forma remota pela internet.
+ 
+  Vantagens: 
+   * Consumo por demanda 
+   * Otimização de recursos 
+   * Velocidade de aquisição
+   * Distribuição global
+   * Escala
+   * Simplicidade de gerenciamento
+   
+  Erros comuns para aderir uma cloud
+  
+   * Falta de planejamento de custo
+   * Acesso ilimitado aos usuários
+   * Usar cloud como VPS
+   * Não reconhecer os serviços adequados.
+   
+
+
+    AWS Services
+    
+  * IAM --> Identity Access Manager
+  |
+  |+-> User -> Indivíduo Pessoal
+  |+-> Groups -> User groups
+  |+-> Roles -> Permite o acesso de um serviço da AWS para conectar com outro serviço relacionado ao conjunto.
+  +--> Policy: 
+  	* Objeto que deffine os acessos aos recursos da AWS;
+  	* Uma policy pode ser vínculada a um user, group ou role;
+  	* A construção de uma policy é utilizando json.
+  	* Você pode utilizar policies já existentes ou criar as suas.
+  	
+  	
+ 
+  * Os usuário devem possuir o seu perfil próprio.
+    A idéia é que eles não sejam compartilhado.
