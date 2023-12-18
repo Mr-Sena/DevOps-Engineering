@@ -1,0 +1,56 @@
+
+ - Controlar o tráfego para sub-redes com ACLs de rede
+ Portas Efêmeras - AWS --> [ https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/vpc-network-acls.html ]
+    
+   O cliente que inicia a solicitação escolhe o intervalo de portas efêmero. O intervalo varia dependendo do sistema operacional do cliente.
+
+	Muitos kernels Linux (incluindo o kernel Amazon Linux) usam portas 32768-61000.
+
+	As solicitações originadas do Elastic Load Balancing usam as portas 1024-65535.
+
+	Os sistemas operacionais Windows até o Windows Server 2003 usam portas 1025-5000.
+
+	O Windows Server 2008 e versões posteriores usam portas 49152-65535.
+
+	Um gateway NAT usa as portas 1024 a 65535.
+
+	As funções do AWS Lambda usam portas 1024-65535.
+	
+	
+	- Na prática, para abranger os diferentes tipos de cliente que podem iniciar tráfego para instâncias voltadas para o público em sua VPC, você pode abrir as portas efêmeras 1024 a 65535. 
+	
+
+
+   
+
+ - Nat-gateway ---> Uma gatewat NAT permite conectar uma rede interno privada com o acesso externo; Porém, uma rede externa não pode inicializar o acesso para conectar à sub-rede.ddwwwwwwwwwww
+ 
+ 
+ 
+ [ Continue: AWS VCP Dossier ]
+ 
+ 
+ - VPC Security
+ 
+  * Security Group --> Statefull: 
+  	Toda regra que é configurado para permitir conectar o acesso (interno ou externo) para a rede, 
+  	determina que a resposta para uma determinada request seja autorizada para enviar o retorno. [Seja inbound ou outbound]
+  	
+  * Network ACL --> Stateless
+	The network access control, permite configurar mais uma camada para proteger a rede VPC do seu sistema.
+	Porém, esse nível de controle exige que acesso que seja enviado, externo ou interno, seja independente; 
+	isso significa que, o protocolo de rede utilizado não possuí estado; 
+	Pois a resposta de uma requisição não está relacionado com a transação anterior.
+	
+	Portanto, é imprescindível que seja determinado o acesso de entrada e saída para conectar à rede;
+	Ainda que o destino da request esteja habilitado, a resposta da fonte só podera ser aceita se a entrada for configurada.
+	
+	* Portas efêmeas podem ser muitas utilizadas nesse caso.
+  
+  
+  Para conectar o acesso remoto para o ssh de uma máquina o canal utiliza o padrão para direcioar à porta 22
+  
+  
+  
+  Rule number da rede define a ordem de prioridade/precedência que uma regra possúi quando entrar em conflito com outra regra.
+  Regras com número menores possui a prioridade.

@@ -1,0 +1,9 @@
+
+ - Create the VPC
+ - Cidr block config
+ - Subnet create
+ - Create the EC2 machine
+ - Adicionar o EC2 dentro da subnet.
+ - Create the internet-gateway
+ - Create the route table [ add a new route (0.0.0.0/0 --> ship to the internet-gateway. ]
+ 

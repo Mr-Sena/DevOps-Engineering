@@ -1,0 +1,19 @@
+
+ - Copiar a chave SSH para dentro da máquina pública para fazer o acesso direto para a máquina privada: 
+   > scp -i <key-pair-path> <key-pair-path-to-be-copied> <host-address>:<target-path>
+   
+   Exemplo: 
+   
+   $ scp -i ./lab-key-pair.pem ./lab-key-pair.pem ubuntu@18.214.39.193:/home/ubuntu/.ssh/lab-key-pair.pem
+   
+   Ordem de acesso: 
+   - Conectar a máquina pública: 
+      $ ssh -i <key-pair-path> <public-host>
+   - Enviar o comando para conectar para direcionar o acesso para a máquina privada: 
+      $ ssh -i <key-pair-path> <private-host>
+     
+     Exemplo: ssh -i ./lab-key-pair.pem ubuntu@18.214.39.193
+     
+   
+   Dessa forma é habilitado o acesso à rede privada, porém ele não consegue enviar um acesso externo.
+   Para conseguir, atualizar o pacote do repositório, por exemplo, a Nat-gateway é ideal para esse caso.
