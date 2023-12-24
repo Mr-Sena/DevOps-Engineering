@@ -1,0 +1,33 @@
+ Amazon EC2 -> Elastic Compute Cloud
+ 
+  * Foi um dos primeiros serviços criado pela AWS.
+  * Permite a criação de máquinas Windows, Linux e Mac. 
+  * Suporte a arquitetura 64 bits x86 ou 64 bits Arm
+  * A cobrança de umn EC2 é feita por segundo. Mas
+   você deve ter um consumo mínimo de 60 seguindos.
+  * Pode criar máquina com acesso públic ou não
+  
+  	Tipos de EC2
+
+  * Uso geral -> São as instâncias com mais equilíbrio
+  entre CPU, memória e rede. São os tipos mais usados e 
+  servem para abranger um uso mais amplo.
+  
+  * Otimizados para computação -> São instâncias que tem 
+  como foco o uso de CPU. São usados em tarefas de alto
+  nível de processamento.
+  
+  * Otimizados para memória -> São instâncias que tem 
+  como foco o uso de memória. São usados em tarefas que 
+  possuem maior nívem de consumo de memória RAM.
+  
+  * Computação acelerada -> São usadas para cenário de 
+  processamento gráfico ou cálculos de número flutuante.
+  
+  * Otimizado para armazenamento -> São usados para cargas
+  que exigem alto nívem de acesso de leitura e gravação.
+  
+  * Otimizadas para alta performance -> São usadas para 
+  computação de alta performance, como simulações complexas 
+  e cargas com aprendizado profundo.
+
