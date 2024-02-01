@@ -28,7 +28,7 @@
   |+-> Groups -> User groups
   |+-> Roles -> Permite o acesso de um serviço da AWS para conectar com outro serviço relacionado ao conjunto.
   +--> Policy: 
-  	* Objeto que deffine os acessos aos recursos da AWS;
+  	* Objeto que define os acessos aos recursos da AWS;
   	* Uma policy pode ser vínculada a um user, group ou role;
   	* A construção de uma policy é utilizando json.
   	* Você pode utilizar policies já existentes ou criar as suas.
@@ -36,4 +36,4 @@
   	
  
   * Os usuário devem possuir o seu perfil próprio.
-    A idéia é que eles não sejam compartilhado.
+    A idéia é que eles não sejam compartilhados.

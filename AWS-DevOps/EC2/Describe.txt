@@ -3,9 +3,9 @@
   * Foi um dos primeiros serviços criado pela AWS.
   * Permite a criação de máquinas Windows, Linux e Mac. 
   * Suporte a arquitetura 64 bits x86 ou 64 bits Arm
-  * A cobrança de umn EC2 é feita por segundo. Mas
+  * A cobrança de um EC2 é feita por segundo. Mas
    você deve ter um consumo mínimo de 60 seguindos.
-  * Pode criar máquina com acesso públic ou não
+  * Pode criar máquina com acesso público ou não.
   
   	Tipos de EC2
 

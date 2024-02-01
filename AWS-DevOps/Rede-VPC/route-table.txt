@@ -1,4 +1,4 @@
-Route table, é uma tabela de de rotas utilizado para definir todos as regras de rota para acessar à subnet.
+Route table, é uma tabela de rotas utilizado para definir todos as regras de rota para acessar à subnet.
 
 
 Porém, não é utilizado somente para associar um internet gateway para conseguir conectar o acesso; 

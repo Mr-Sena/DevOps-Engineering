@@ -1,5 +1,6 @@
 
- - Copiar a chave SSH para dentro da máquina pública para fazer o acesso direto para a máquina privada: 
+ - Copiar a chave SSH para dentro da máquina pública para fazer o acesso direto para a máquina privada, 
+   pois não é possível efetuar o acesso externo à rede da máquina:
    > scp -i <key-pair-path> <key-pair-path-to-be-copied> <host-address>:<target-path>
    
    Exemplo: 

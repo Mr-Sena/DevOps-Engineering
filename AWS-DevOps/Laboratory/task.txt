@@ -1,0 +1,31 @@
+AWS Project tasks: 
+
+ - iam profiles [x]
+ - Rede VPC [x]
+ - VPC Subnet [x]
+ - Internet Gateway [x]
+ - Nat Gateway [x]
+ - Route Table [x]
+ - Security [x]
+ - EC2 instance [x]
+ 
+  * Ubuntu-Web-Service
+  * Ubuntu-Virtual-DB
+   - Docker install [ ]
+   - run docker compose up [ Python Web-Service & MongoDB Container ]
+ 
+ - EC2 User data [ ]
+
+
+
+
+
+Resalvas: 
+ * AWS-Security-instance
+   - SSH JumpserverAccess CIDR Block
+   
+ * Remover the old VPC [Security Group, ACLs, Route Table, internet gateway]
+   
+   
+   
+ 

@@ -23,11 +23,10 @@
 
    
 
- - Nat-gateway ---> Uma gatewat NAT permite conectar uma rede interno privada com o acesso externo; Porém, uma rede externa não pode inicializar o acesso para conectar à sub-rede.ddwwwwwwwwwww
+ - Nat-gateway ---> Uma gateway NAT permite conectar uma rede interna privada com o acesso externo; Porém, uma rede externa não pode inicializar o acesso para conectar à sub-rede.
  
- 
- 
- [ Continue: AWS VCP Dossier ]
+
+
  
  
  - VPC Security
@@ -45,10 +44,13 @@
 	Portanto, é imprescindível que seja determinado o acesso de entrada e saída para conectar à rede;
 	Ainda que o destino da request esteja habilitado, a resposta da fonte só podera ser aceita se a entrada for configurada.
 	
-	* Portas efêmeas podem ser muitas utilizadas nesse caso.
+	* Portas efêmeras podem ser muitas utilizadas nesse caso.
   
   
-  Para conectar o acesso remoto para o ssh de uma máquina o canal utiliza o padrão para direcioar à porta 22
+  
+  
+  
+  Para conectar o acesso remoto para o ssh de uma máquina, o canal utiliza o padrão para direcioar à porta 22
   
   
   

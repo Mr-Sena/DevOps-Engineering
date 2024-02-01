@@ -6,7 +6,7 @@ To install:
  
 Login: 
  $ aws configure:
- 	AWS Access Key ID: Chave de acesso criado para o usuário
+ 	AWS Access Key ID: Chave de acesso criado para o usuário.
 	AWS Secret Access Key: Chave de acesso criado para o usuário (Secret)
 	Default region name [us-east-1]: <region-name>
 	Default output format [JSON]: <output-format>
