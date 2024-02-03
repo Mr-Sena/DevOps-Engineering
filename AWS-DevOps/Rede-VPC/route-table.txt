@@ -1,4 +1,4 @@
-Route table, é uma tabela de rotas utilizado para definir todos as regras de rota para acessar à subnet.
+Route table, é uma tabela de rotas utilizado para definir todos as regras de rota para acessar à subnet/internet.
 
 
 Porém, não é utilizado somente para associar um internet gateway para conseguir conectar o acesso; 
@@ -8,3 +8,5 @@ Existe a possibilidade de relacionar a rede com outra subrede, ou ainda redireci
 
 Uma route table envolve todas as suas zonas de disponibilidade relacionado com a VPC. 
 Portanto é possível associar a tabela com varias subnets configuradas em zona de disponibilidade diferente. 
+
+Lembrete: VPC é vinculado somente com uma região.

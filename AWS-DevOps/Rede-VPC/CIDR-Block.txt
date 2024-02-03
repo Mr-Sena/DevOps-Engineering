@@ -5,7 +5,7 @@ CIDR Block
  Ou seja o intervalo desse campo pode variar entre 0.0.0.0 a 255.255.255.255.
  
  Portanto, o endereço de ip deve possuir 32 bits
- Cada digito --> 1 byte = 8 bits ∴ Total: 32 bits (4 digitos * 8 bits)
+ Cada digito --> 1 byte = 8 bits ∴ Total: 32 bits (4 digitos[byte] * 8 bits = 32 bits.)
 
 
   O valor definido a baixo representa um CIDR bloco que utiliza os 

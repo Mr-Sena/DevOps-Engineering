@@ -23,7 +23,7 @@
 
    
 
- - Nat-gateway ---> Uma gateway NAT permite conectar uma rede interna privada com o acesso externo; Porém, uma rede externa não pode inicializar o acesso para conectar à sub-rede.
+ - Nat-gateway ---> Uma gateway NAT permite conectar uma rede interna particular com o acesso externo; Porém, uma rede externa não pode inicializar o acesso para conectar à sub-rede.
  
 
 
@@ -32,7 +32,7 @@
  - VPC Security
  
   * Security Group --> Statefull: 
-  	Toda regra que é configurado para permitir conectar o acesso (interno ou externo) para a rede, 
+  	Toda regra que é designada para permitir conectar o acesso (interno ou externo) para a rede, 
   	determina que a resposta para uma determinada request seja autorizada para enviar o retorno. [Seja inbound ou outbound]
   	
   * Network ACL --> Stateless
@@ -47,7 +47,7 @@
 	* Portas efêmeras podem ser muitas utilizadas nesse caso.
   
   
-  
+  - ORDEM: Network ACL possui proioridade sobre a regra de security group.
   
   
   Para conectar o acesso remoto para o ssh de uma máquina, o canal utiliza o padrão para direcioar à porta 22
@@ -55,4 +55,4 @@
   
   
   Rule number da rede define a ordem de prioridade/precedência que uma regra possúi quando entrar em conflito com outra regra.
-  Regras com número menores possui a prioridade.
+  Regras com número menores possui prioridade maior.

@@ -13,7 +13,7 @@
    - Enviar o comando para conectar para direcionar o acesso para a máquina privada: 
       $ ssh -i <key-pair-path> <private-host>
      
-     Exemplo: ssh -i ./lab-key-pair.pem ubuntu@18.214.39.193
+     Exemplo: ssh -i ~/.ssh/lab-key-pair.pem ubuntu@18.214.39.193
      
    
    Dessa forma é habilitado o acesso à rede privada, porém ele não consegue enviar um acesso externo.

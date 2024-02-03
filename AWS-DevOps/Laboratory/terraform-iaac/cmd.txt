@@ -1,0 +1,3 @@
+
+Auto indent format: 
+ > terraform fmt
