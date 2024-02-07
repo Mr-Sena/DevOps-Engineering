@@ -1,14 +1,18 @@
+locals {
+  ec2_ami = var.ec2_ami
+}
+
 resource "aws_key_pair" "access_key_ssh" {
-  key_name   = "access-key-ssh"
-  public_key = file("~/.ssh/id_rsa.pub") # Use host public ssh key for create the key pair.
+  key_name   = var.kpair_ssh_name
+  public_key = file(var.kpair_ssh_file_path)
 }
 
 
 
 resource "aws_instance" "web_ec2_instance" {
 
-  ami                         = "ami-0c7217cdde317cfec"
-  instance_type               = "t2.micro"
+  ami                         = local.ec2_ami
+  instance_type               = var.web_ec2_instance_type
   subnet_id                   = aws_subnet.subrede_publica.id
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.terraformer_security_web.id]
@@ -27,8 +31,8 @@ resource "aws_instance" "web_ec2_instance" {
 
 resource "aws_instance" "data_ec2_instance" {
 
-  ami                    = "ami-0c7217cdde317cfec"
-  instance_type          = "t2.micro"
+  ami                    = local.ec2_ami
+  instance_type          = var.db_ec2_instance_type
   subnet_id              = aws_subnet.subrede_particular.id
   vpc_security_group_ids = [aws_security_group.terraformer_security_datasource.id]
   key_name               = aws_key_pair.access_key_ssh.key_name
@@ -49,10 +53,10 @@ resource "aws_instance" "data_ec2_instance" {
 
 output "web_instance_ip" {
 
-    value = aws_instance.web_ec2_instance.public_ip
+  value = aws_instance.web_ec2_instance.public_ip
 }
 
 output "data_instance_ip" {
 
-    value = aws_instance.data_ec2_instance.private_ip
+  value = aws_instance.data_ec2_instance.private_ip
 }

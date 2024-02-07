@@ -1,97 +1,38 @@
 resource "aws_security_group" "terraformer_security_web" {
-  name        = "terraformer-security-web"
+  name        = var.terraformer_security_web_name
   description = "Regras de firewall para acessar a rede terraformer web."
   vpc_id      = aws_vpc.rede_terraformer.id
 
 
-  ingress {
-    description      = "Acesso HTTP."
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  dynamic "ingress" {
+
+    for_each = var.web_security_group_ingresses
+
+    content {
+      description      = ingress.value["description"]
+      from_port        = ingress.value["from_port"]
+      to_port          = ingress.value["to_port"]
+      protocol         = ingress.value["protocol"]
+      cidr_blocks      = ingress.value["cidr_blocks"]
+      ipv6_cidr_blocks = ingress.value["ipv6_cidr_blocks"]
+    }
   }
 
-  ingress {
-    description      = "Acesso HTTPs."
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
+  dynamic "egress" {
 
-  ingress {
-    description      = "Acesso ssh."
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
-  egress {
-    description      = "Acesso HTTP."
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  egress {
-    description      = "Acesso HTTPs."
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
-  egress {
-    description      = "Acesso DNS."
-    from_port        = 53
-    to_port          = 53
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  egress {
-    description      = "Acesso DNS."
-    from_port        = 53
-    to_port          = 53
-    protocol         = "udp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
-
-  egress {
-    description      = "Acesso SSH."
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
-  egress {
-    description      = "Connect database."
-    from_port        = 27017
-    to_port          = 27017
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    for_each = var.web_security_group_egresses
+    content {
+      description      = egress.value["description"]
+      from_port        = egress.value["from_port"]
+      to_port          = egress.value["to_port"]
+      protocol         = egress.value["protocol"]
+      cidr_blocks      = egress.value["cidr_blocks"]
+      ipv6_cidr_blocks = egress.value["ipv6_cidr_blocks"]
+    }
   }
 
   tags = {
-    Name = "terraformer-security-web"
+    Name = var.terraformer_security_web_name
   }
 
 }
@@ -109,148 +50,35 @@ resource "aws_network_acl" "terraformer_web_nacl" {
   subnet_ids = [aws_subnet.subrede_publica.id]
 
 
-
-  # HTTP
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 100
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
+  dynamic "ingress" {
+    for_each = var.terraformer_web_nacl_ingress
+    content {
+      protocol   = ingress.value["protocol"]
+      rule_no    = ingress.value["rule_no"]
+      action     = ingress.value["action"]
+      cidr_block = ingress.value["cidr_block"]
+      from_port  = ingress.value["from_port"]
+      to_port    = ingress.value["to_port"]
+    }
   }
 
 
-
-  # HTTPs
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 110
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 443
-    to_port    = 443
+  dynamic "egress" {
+    for_each = var.terraformer_web_nacl_egress
+    content {
+      protocol   = egress.value["protocol"]
+      rule_no    = egress.value["rule_no"]
+      action     = egress.value["action"]
+      cidr_block = egress.value["cidr_block"]
+      from_port  = egress.value["from_port"]
+      to_port    = egress.value["to_port"]
+    }
   }
 
-
-  # SSH
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 120
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
-  }
-
-
-
-  # DNS
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 130
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 53
-    to_port    = 53
-  }
-
-
-
-  # DNS
-  ingress {
-    protocol   = "udp"
-    rule_no    = 135
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 53
-    to_port    = 53
-  }
-
-
-
-
-  # Portas efêmeras.
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 140
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 1024
-    to_port    = 65535
-  }
-
-
-
-
-  # Portas efêmeras.
-  egress {
-    protocol   = "tcp"
-    rule_no    = 100
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 1024
-    to_port    = 65535
-  }
-
-
-
-
-  # HTTP 
-  egress {
-    protocol   = "tcp"
-    rule_no    = 110
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
-  }
-
-
-  # HTTPs
-  egress {
-    protocol   = "tcp"
-    rule_no    = 120
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 443
-    to_port    = 443
-  }
-
-
-  # DNS 
-  egress {
-    protocol   = "tcp"
-    rule_no    = 130
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 53
-    to_port    = 53
-  }
-
-
-  egress {
-    protocol   = "udp"
-    rule_no    = 135
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 53
-    to_port    = 53
-  }
-
-  #SSH
-  egress {
-    protocol   = "tcp"
-    rule_no    = 140
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
-  }
 
 
   tags = {
-    Name = "terraformer-web-nacl"
+    Name = var.terraformer_web_nacl_name
   }
 }
 
@@ -262,23 +90,8 @@ resource "aws_network_acl" "terraformer_web_nacl" {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 resource "aws_security_group" "terraformer_security_datasource" {
-  name        = "terraformer-security-datasource"
+  name        = var.terraformer_security_datasource_name
   description = "Regras de firewall para gerenciar o acesso de rede de dados."
   vpc_id      = aws_vpc.rede_terraformer.id
 
@@ -313,59 +126,23 @@ resource "aws_security_group" "terraformer_security_datasource" {
   }
 
 
-
-
-  egress {
-    description      = "Acesso HTTP."
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  dynamic "egress" {
+    for_each = var.terraformer_security_datasource_egress
+    content {
+      description      = egress.value["description"]
+      from_port        = egress.value["from_port"]
+      to_port          = egress.value["to_port"]
+      protocol         = egress.value["protocol"]
+      cidr_blocks      = egress.value["cidr_blocks"]
+      ipv6_cidr_blocks = egress.value["ipv6_cidr_blocks"]
+    }
   }
-
-
-  egress {
-    description      = "Acesso HTTPs."
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
-
-  egress {
-    description      = "Acesso DNS."
-    from_port        = 53
-    to_port          = 53
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
-
-
-  egress {
-    description      = "Acesso DNS."
-    from_port        = 53
-    to_port          = 53
-    protocol         = "udp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
 
   tags = {
-    Name = "terraformer-security-datasource"
+    Name = var.terraformer_security_datasource_name
   }
 
 }
-
-
-
 
 
 
@@ -374,99 +151,34 @@ resource "aws_network_acl" "terraformer_data_nacl" {
   subnet_ids = [aws_subnet.subrede_particular.id]
 
 
-
-  # Acesso à base de dados: 
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 100
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 27017
-    to_port    = 27017
+  dynamic "ingress" {
+    for_each = var.terraformer_data_nacl_ingress
+    content {
+      protocol   = ingress.value["protocol"]
+      rule_no    = ingress.value["rule_no"]
+      action     = ingress.value["action"]
+      cidr_block = ingress.value["cidr_block"]
+      from_port  = ingress.value["from_port"]
+      to_port    = ingress.value["to_port"]
+    }
   }
 
 
 
-  # SSH   
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 110
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
+  dynamic "egress" {
+    for_each = var.terraformer_data_nacl_egress
+    content {
+      protocol   = egress.value["protocol"]
+      rule_no    = egress.value["rule_no"]
+      action     = egress.value["action"]
+      cidr_block = egress.value["cidr_block"]
+      from_port  = egress.value["from_port"]
+      to_port    = egress.value["to_port"]
+    }
   }
-
-
-
-  # Portas efêmeras.   
-  ingress {
-    protocol   = "tcp"
-    rule_no    = 120
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 1024
-    to_port    = 65535
-  }
-
-
-  # Portas efêmeras.
-  egress {
-    protocol   = "tcp"
-    rule_no    = 100
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 1024
-    to_port    = 65535
-  }
-
-
-  # HTTP
-  egress {
-    protocol   = "tcp"
-    rule_no    = 110
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
-  }
-
-
-  # HTTPs
-  egress {
-    protocol   = "tcp"
-    rule_no    = 120
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 443
-    to_port    = 443
-  }
-
-  # DNS
-  egress {
-    protocol   = "tcp"
-    rule_no    = 130
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 53
-    to_port    = 53
-  }
-
-
-  # DNS
-  egress {
-    protocol   = "udp"
-    rule_no    = 140
-    action     = "allow"
-    cidr_block = "0.0.0.0/0"
-    from_port  = 53
-    to_port    = 53
-  }
-
-
 
   tags = {
-    Name = "terraformer-data-nacl"
+    Name = var.terraformer_data_nacl_name
   }
 
 }

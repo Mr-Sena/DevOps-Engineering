@@ -1,8 +1,8 @@
 resource "aws_vpc" "rede_terraformer" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.terraformer_vpc_cidr_block
 
   tags = {
-    Name = "terraformer-vpc"
+    Name = var.terraformer_vpc_name
   }
 }
 
@@ -10,10 +10,9 @@ resource "aws_vpc" "rede_terraformer" {
 
 resource "aws_subnet" "subrede_publica" {
   vpc_id     = aws_vpc.rede_terraformer.id
-  cidr_block = "10.0.0.0/24"
-
+  cidr_block = var.terraformer_public_subnet_cidr_block
   tags = {
-    Name = "subrede-publica"
+    Name = var.terraformer_public_subnet_name
   }
 }
 
@@ -21,10 +20,9 @@ resource "aws_subnet" "subrede_publica" {
 
 resource "aws_subnet" "subrede_particular" {
   vpc_id     = aws_vpc.rede_terraformer.id
-  cidr_block = "10.0.1.0/24"
-
+  cidr_block = var.terraformer_private_subnet_cidr_block
   tags = {
-    Name = "subrede-particular"
+    Name = var.terraformer_private_subnet_name
   }
 }
 
@@ -33,7 +31,7 @@ resource "aws_subnet" "subrede_particular" {
 resource "aws_internet_gateway" "terraformer_igw" {
 
   tags = {
-    Name = "terraformer-igw"
+    Name = var.terraformer_igw_name
   }
 }
 
@@ -50,7 +48,7 @@ resource "aws_internet_gateway_attachment" "terraformer_link_igw" {
 resource "aws_eip" "terraformer_nat_eip" {
 
   tags = {
-    Name = "terraformer-nat-eip"
+    Name = var.terraformer_nat_eip_name
   }
 
   depends_on = [aws_internet_gateway.terraformer_igw]
@@ -62,7 +60,7 @@ resource "aws_nat_gateway" "terraformer_nat_gateway" {
   subnet_id     = aws_subnet.subrede_publica.id
 
   tags = {
-    Name = "terraformer-nat-gateway"
+    Name = var.terraformer_nat_gtw_name
   }
 
   # To ensure proper ordering, it is recommended to add an explicit dependency
@@ -83,7 +81,7 @@ resource "aws_route_table" "terraformer_public_route_table" {
   }
 
   tags = {
-    Name = "terraformer-public-route-table"
+    Name = var.public_route_table_name
   }
 }
 
@@ -109,7 +107,7 @@ resource "aws_route_table" "terraformer_private_route_table" {
   }
 
   tags = {
-    Name = "terraformer-private-route-table"
+    Name = var.private_route_table_name
   }
 }
 
