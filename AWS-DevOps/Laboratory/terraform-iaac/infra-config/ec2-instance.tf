@@ -27,6 +27,7 @@ resource "aws_instance" "web_ec2_instance" {
 
 
 ## Detalhe: o processo para executar o aplicativo, e conectar o acesso à base de dados deverá ser efetuado manualmente. [container-configure.txt] ##
+## Porém talvez, pode ser automtizado.
 
 
 resource "aws_instance" "data_ec2_instance" {

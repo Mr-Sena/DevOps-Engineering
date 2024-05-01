@@ -48,7 +48,7 @@ Remover um container:
 
 
 Executar o container com interação ao terminal
- > docker exect -it <container-id> <comando-para-exeutar-no-container>
+ > docker exec -it <container-id> <comando-para-exeutar-no-container>
 
 exemplo: 
 $ docker exec -it 37ff3c033e8b bash

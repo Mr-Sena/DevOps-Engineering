@@ -1,7 +1,32 @@
 
+
+Before applying the infra code, 
+to login user with permission to execute resource. 
+ [allow create the SNS:CreateTopic, SQS, EC2, etc.] 
+
+ AWS Provider: 
+ > aws configure
+ [access key id, secret key, region]
+ 
+Start repository: 
+ > terraform init
+ 
+ 
 Auto indent format: 
  > terraform fmt
 
 
 infra review
  > terraform plan
+ 
+
+
+Aplicar o código: 
+
+ > terraform apply
+ 
+ 
+ 
+Remove code: 
+
+ > terraform destroy
